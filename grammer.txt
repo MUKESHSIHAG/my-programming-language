@@ -1,7 +1,8 @@
-expr  : term((PLUS|MINUS) term)*
+expr  : KEYWORD: (VAR|var) IDENTIFER EQ expr
+        :term((PLUS|MINUS) term)*
 term  : factor((MUL|DIV) factor)*
 factor : (PLUS|MINUS) factor
-        : powwer
+        : power
 power : atom( POW | factor)*
 atomm   : INT|FLOAT
         : LPAREN expr RPAREN
