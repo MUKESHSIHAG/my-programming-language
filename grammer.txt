@@ -9,14 +9,21 @@ arith-expr	:term ((PLUS|MINUS) term)*
 term		: factor ((MUL|DIV) factor)*
 
 factor		: (PLUS|MINUS) factor
-		: power
+			: power
 
 power		: atom (POW factor)*
 
 atom 		: INT|FLOAT|IDENTIFIER
-		: LPAREN expr RPAREN
-		:if_expr
+			: LPAREN expr RPAREN
+			: if_expr
+			: for_expr
+			: while_exor
 
 if_expr   : KEYWORD: if expr KEYWORD: then expr
 			:(KEYWORD: elif expr KEYWORD: then expr)*
 			:(KEYWORD: else expr)?
+
+for_expr   : KEYWORD: for IDENTIFIER EQ expr KEYWORD: to expr
+			:(KEYWORD: step expr)?	KEYWORD:then expr
+
+while_expr   : KEYWORD: while expr KEYWORD: then expr					
