@@ -19,9 +19,10 @@ atom 		: INT|FLOAT|STRING|IDENTIFIER
 			: LPAREN expr RPAREN
 			: if_expr
 			: for_expr
+			: list_expr
 			: while_exor
 			: func-def
-
+list_expr	: LSQUARE (expr (COMMA expr)*)? RSQUARE
 if_expr   : KEYWORD: if expr KEYWORD: then expr
 			:(KEYWORD: elif expr KEYWORD: then expr)*
 			:(KEYWORD: else expr)?
